@@ -7,6 +7,8 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - What did the game look like the first time you ran it?
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
+  1.the hints were backwards
+  2. the seeting stated that Range: 1 to 100, but it's currently able to enter 1000 (out of range)
 
 **Bug Reproduction Log**
 
@@ -14,9 +16,9 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| 1000 | notice player that the entered number is out of range | hint: GO LOWER| |
+| 50| hint: GO HIGHER | hint: GO LOWER | |
+| 6 | hint: GO HIGHER| hint: GO Higher and "Out of attempts! The secret was 21. Score: 5" at the 7th attempt| |
 
 ---
 
