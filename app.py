@@ -1,5 +1,6 @@
 import random
 import streamlit as st
+from logic_utils import check_guess
 
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
@@ -27,24 +28,6 @@ def parse_guess(raw: str):
         return False, None, "That is not a number."
 
     return True, value, None
-
-
-def check_guess(guess, secret):
-    if guess == secret:
-        return "Win", "🎉 Correct!"
-
-    try:
-        if guess > secret:
-            return "Too High", "📈 Go HIGHER!"
-        else:
-            return "Too Low", "📉 Go LOWER!"
-    except TypeError:
-        g = str(guess)
-        if g == secret:
-            return "Win", "🎉 Correct!"
-        if g > secret:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
@@ -152,11 +135,16 @@ if submit:
     if not ok:
         st.session_state.history.append(raw_guess)
         st.error(err)
+    elif guess_int < low or guess_int > high:
+        st.session_state.history.append(guess_int)
+        # FIXED: I identified that the game should reject guesses outside the valid range (e.g., 1000 when range is 1-100).
+        # AI implemented range validation to enforce difficulty-specific bounds and prevent invalid game states.
+        st.error(f"Guess must be between {low} and {high}.") 
     else:
         st.session_state.history.append(guess_int)
 
         if st.session_state.attempts % 2 == 0:
-            secret = str(st.session_state.secret)
+            secret = st.session_state.secret      # FIXME: Logic breaks here (compared to a string), I fixed
         else:
             secret = st.session_state.secret
 
