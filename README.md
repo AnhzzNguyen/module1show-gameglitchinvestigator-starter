@@ -25,30 +25,35 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] Describe the game's purpose: A Streamlit-based number guessing game where players try to guess a secret number and receive hints. Points are earned based on the number of attempts.
+
+- [x] Detail which bugs you found: 
+  1. Secret number changed on every button click due to missing session state initialization.
+  2. Hint messages were reversed ("Go HIGHER!" when too high).
+  3. No range validation—guesses outside the valid range were accepted.
+
+- [x] Explain what fixes you applied:
+  1. Fixed session state to persist the secret number throughout gameplay.
+  2. Corrected check_guess() logic to display proper hints ("Go LOWER!" for too high,  "Go HIGHER!" for too low).
+  3. Added range validation to reject out-of-range guesses.
+  4. Refactored logic functions to logic_utils.py with comprehensive test coverage.
 
 ## 📸 Demo Walkthrough
 
-Describe your fixed game in numbered steps so a reader can follow along without watching a video:
+1. Game starts:Player sees the number guessing game interface with an input field and submit button. The secret number is set once and remains constant throughout the game.
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+2. First guess (40):Player enters 40 and clicks Submit. The game displays "Too Low" and shows "Guesses: 1" in the score counter.
 
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
+3. Second guess (70): Player enters 70 and clicks Submit. The game displays "Too High" and updates the counter to "Guesses: 2".
+
+4. Third guess (55): Player enters 55 and clicks Submit. The game displays "Too Low" and updates to "Guesses: 3".
+
+5. Fourth guess (62): Player enters 62 and clicks Submit. The game displays " You got it! The secret number was 62!" and the counter shows "Guesses: 4".
+
+6. Game completes: A "Play Again" button appears, allowing the player to reset and play another round with a new secret number.
 
 ## 🧪 Test Results
 
-```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
-```
 
-## 🚀 Stretch Features
+ ========================= 10/10 passed =========================
 
-- [ ] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]

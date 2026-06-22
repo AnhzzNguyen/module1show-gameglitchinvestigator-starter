@@ -61,13 +61,18 @@ Document at least 3 bugs you found. Add rows as needed.
 
 ## 4. What did you learn about Streamlit and state?
 
-- How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+  Streamlit reruns the entire script from top to bottom every time a button is clicked or input changes. Without session state, variables reset to their initial values on each rerun—so our secret number kept regenerating instead of staying the same. Session state is like a "memory" that persists across reruns. By storing the secret in `st.session_state.secret`, we tell Streamlit "keep this value even when you rerun the script." It's the difference between writing on a whiteboard (resets each rerun) and a ledger (persists).
 
 ---
 
 ## 5. Looking ahead: your developer habits
 
-- What is one habit or strategy from this project that you want to reuse in future labs or projects?
-  - This could be a testing habit, a prompting strategy, or a way you used Git.
-- What is one thing you would do differently next time you work with AI on a coding task?
-- In one or two sentences, describe how this project changed the way you think about AI generated code.
+-> Habit/Strategy to Reuse:
+ 1.two-layer testing approach. I combined manual gameplay testing (playing the game to verify the fix actually works) with automated pytest tests (catching edge cases systematically).
+ 2.documented bugs clearly in that Bug Reproduction Log before fixing them
+
+ -> Changes: 
+  1.ask the AI why it's suggesting a change and have it explain the logic before accepting it
+
+-> Thoughts:
+1.AI is a tool that accelerates development, but human judgment about testing and verification is non-negotiable
